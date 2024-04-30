@@ -1,0 +1,3 @@
+ALTER TABLE Venues
+ADD COLUMN Status VARCHAR(255) DEFAULT 'Not Rated';
+

@@ -1,0 +1,9 @@
+DROP PROCEDURE IF EXISTS GetAllAvailabilities;
+DROP PROCEDURE IF EXISTS GetAvailabilityByVenueID;
+DROP PROCEDURE IF EXISTS GetAvailabilityByStatus;
+DROP PROCEDURE IF EXISTS GetAvailabilityByDateTime;
+
+DROP PROCEDURE IF EXISTS VenueAvailability;
+
+
+
