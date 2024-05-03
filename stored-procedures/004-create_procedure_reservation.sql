@@ -14,8 +14,7 @@ BEGIN
 
     -- Return the ID of the newly created reservation
     SELECT LAST_INSERT_ID() AS ReservationID;
-END 
-
+END; 
 
 
 CREATE PROCEDURE GetAllReservations()
@@ -34,6 +33,7 @@ BEGIN
     JOIN Venues V ON R.VenueID = V.VenueID
     WHERE R.ReservationID = p_reservationID;
 END;
+
 
 CREATE PROCEDURE UpdateReservation(IN p_reservationID INT, IN p_reservationDate DATE, IN p_startTime TIME, IN p_endTime TIME, IN p_numberOfGuests INT, IN p_status ENUM('Pending', 'Confirmed', 'Cancelled', 'Completed'), IN p_amount DECIMAL(10,2))
 BEGIN
@@ -70,5 +70,26 @@ BEGIN
     UPDATE Reservations 
     SET Status = 'Cancelled'
     WHERE ReservationID = p_reservationID;
+END;
+
+CREATE PROCEDURE GetReservationID(
+    IN p_VenueID INT,
+    IN p_UserID INT,
+    IN p_ReservationDate DATE,
+    IN p_StartTime TIME,
+    IN p_EndTime TIME,
+    IN p_NumberOfGuests INT,
+    IN p_Amount DECIMAL(10, 2)
+)
+BEGIN
+    SELECT ReservationID
+    FROM Reservations
+    WHERE VenueID = p_VenueID
+        AND UserID = p_UserID
+        AND ReservationDate = p_ReservationDate
+        AND StartTime = p_StartTime
+        AND EndTime = p_EndTime
+        AND NumberOfGuests = p_NumberOfGuests
+        AND Amount = p_Amount;
 END;
 

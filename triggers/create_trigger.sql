@@ -62,4 +62,15 @@ BEGIN
   END IF;
 END;
 
-SELECT VenueID, Status FROM Venues WHERE VenueID = 1;
+CREATE TRIGGER AfterPaymentSuccess
+AFTER INSERT ON PaymentDetails
+FOR EACH ROW
+BEGIN
+    -- Check if the payment status is 'Completed'
+    IF NEW.PaymentStatus = 'Completed' THEN
+        -- Update the reservation status to 'Confirmed'
+        UPDATE Reservations
+        SET Status = 'Confirmed'
+        WHERE ReservationID = NEW.ReservationID;
+    END IF;
+END;

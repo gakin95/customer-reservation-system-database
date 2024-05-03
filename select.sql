@@ -1,3 +1,25 @@
+ SELECT 
+    ReservationID, ReservationDate
+FROM 
+    Reservations
+WHERE 
+    VenueID = 14 AND
+    UserID = 1 AND
+    ReservationDate = '2024-04-30' AND
+    StartTime = '00:00:00' AND
+    EndTime = '04:45:00' AND
+    NumberOfGuests = 200 AND
+    Amount = 300;
+
+ 
+ SELECT
+  (SELECT COUNT(*) FROM Users) AS TotalUsers,
+  (SELECT COUNT(*) FROM Reservations) AS TotalReservations,
+  (SELECT COUNT(*) FROM PaymentDetails) AS TotalPayments,
+  (SELECT COUNT(*) FROM Venues) AS TotalVenues,
+  (SELECT COUNT(*) FROM VenueAvailability WHERE status = 'available') AS TotalAvailableSlots;
+
+ 
  SELECT * FROM VenueAvailabilityView;
  SELECT *
     FROM VenueAvailabilityView va
